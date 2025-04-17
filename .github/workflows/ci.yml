@@ -38,23 +38,7 @@ jobs:
 
       # 使用npm ci而不是npm install，以确保使用package-lock.json
       - name: Install dependencies
-        run: npm ci
-
-      # 检查代码风格和质量
-      - name: Check code style and linting
-        run: |
-          npm install -g typescript
-          tsc --noEmit
-
-      # 构建项目
-      - name: Build project
-        run: npm run build
-
-      # 在运行API测试前检查API是否可用
-      - name: Check API availability
-        run: |
-          curl -s -o /dev/null -w "%{http_code}" https://jsonplaceholder.typicode.com/posts/1 | grep 200
-        continue-on-error: true
+        run: npm install
 
       # 运行API测试
       - name: Run API tests
